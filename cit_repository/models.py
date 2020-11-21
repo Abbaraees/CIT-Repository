@@ -22,7 +22,7 @@ class Admin(db.Model):
         return pwd_context.verify(password, self.password_hash)
 
     def __repr__(self):
-        return f"Admin: '{self.username}'"
+        return f"<Admin: '{self.username}'>"
 
 
 class Staff(db.Model):
@@ -34,9 +34,11 @@ class Staff(db.Model):
     user_level = db.Column(db.Integer, nullable=False)
     visible = db.Column(db.Boolean, default=True)
     password_hash = db.Column(db.String(255), nullable=False)
-    remember_token = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return f"<Staff: '{self.username}'>"
     
 
     def hash_password(self, password):
@@ -52,10 +54,12 @@ class Staff(db.Model):
 class Department(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    slug = db.Column(db.String(100))
     visible = db.Column(db.Boolean)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return f"<Department: '{self.name}'>"
 
 
 class Project(db.Model):
@@ -63,7 +67,6 @@ class Project(db.Model):
     department_id = db.Column(db.Integer, db.ForeignKey('department.id'),  nullable=True)
     department = db.relationship('Department', backref=db.backref('projects', lazy=True))
     project_number = db.Column(db.String(20), nullable=False)
-    slug = db.Column(db.String(100))
     year_of_submission = db.Column(db.Integer)
     student_name = db.Column(db.String(100), nullable=False)
     supervisor_name = db.Column(db.String(100), nullable=False)
@@ -74,6 +77,9 @@ class Project(db.Model):
     visible = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return f"<Project: '{self.topic}'>"
 
 
 @command('init-db')
