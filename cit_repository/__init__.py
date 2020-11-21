@@ -1,8 +1,9 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 
 from .models import init_app
+from . import auth, staffs
 
 
 def create_app(test_config=None):
@@ -10,6 +11,7 @@ def create_app(test_config=None):
 
     app.config.from_mapping({
         'SQLALCHEMY_DATABASE_URI': 'sqlite:///'+os.path.join(app.instance_path, 'data.sqlite'),
+        'SQLALCHEMY_TRACK_MODIFICATIONS': False,
         'SECRET_KEY': 'dev'
     })
 
@@ -28,6 +30,12 @@ def create_app(test_config=None):
     def hello():
         return 'Hello'
 
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
     init_app(app)
+    app.register_blueprint(staffs.bp)
+    app.register_blueprint(auth.bp)
 
     return app
