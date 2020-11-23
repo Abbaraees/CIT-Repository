@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if g.user %}
+   <div class="row">
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-pills-rose flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">dashboard</i>Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="javascript:;"><i class="material-icons">book</i>All Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">add</i>Add Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>Add User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Departments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>Add Departments</a>
+          </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+{% else %}
+    <div class="col-md-12">
+{% endif %}
+      <div class="row">
+        <form class="col-md-12">
+          <h2 align="center">Filter available projects in repository</h2>
+          <div class="form-row">
+            <div class="col-md-4"></div>
+            <div class="form-group col-md-4">
+              <select>
+                <option>All</option>
+                <option>Computer Studies</option>
+                <option>Maths and Computer Science</option>
+              </select>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="projectTopic">Project Topic</label>
+              <input type="text" class="form-control" id="ProjectTopic" placeholder="e.g CIT Repository">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="year">Year</label>
+              <input type="text" class="form-control" id="year" placeholder="e.g 2019">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="studentName">Student Name</label>
+              <input type="text" class="form-control" id="studentName" placeholder="e.g Ya'u Rabe">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="supervisorName">Supervisor Name</label>
+              <input type="text" class="form-control" id="supervisorName" placeholder="e.g Mukhtar Abubakar">
+            </div>
+          </div> 
+          <div class="form-row">
+            <div class="col-md-4"></div>
+            <div class="form-group">
+              <button class="btn btn-rose"><i class="material-icons">search</i> Search</button>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </form>
+        <div class="col-md-12">
+          {% if projects %}
+          <h3 align="center" style="margin-right: 30px">{{ len(projects) }} Project(s) Found</h3>
+          {% else %}
+          <h3 align="center" style="margin-right: 30px">No Project Found</h3>
+          {% endif %}
+        </div>
+      </div>
+      {% if projects %}
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a href="#" class="nav-link "><i class="material-icons">link</i>Design and Implementation of software for exam supervision - <span style="color: gray;">Computer Studies | 2020</span></a>
+            </li>
+           <li class="nav-item">
+              <a href="#" class="nav-link"><i class="material-icons">link</i>Design and Implementation of software for exam supervision - <span style="color: gray;">Computer Studies | 2020</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"><i class="material-icons">link</i>Design and Implementation of software for exam supervision - <span style="color: gray;">Computer Studies | 2020</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"><i class="material-icons">link</i>Design and Implementation of software for exam supervision - <span style="color: gray;">Computer Studies | 2020</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}

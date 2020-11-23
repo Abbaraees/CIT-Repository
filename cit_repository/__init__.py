@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template
 
-from .models import init_app
+from .models import init_app, Project
 from . import auth, staffs
 
 
@@ -33,6 +33,15 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
         return render_template('index.html')
+
+
+    @app.route('/projects')
+    def all_projects():
+        projects = Project.query.all()
+        projects = [p for p in projects if p.visible]
+
+        return render_template('staffs/project_list.html', projects=projects)
+
 
     init_app(app)
     app.register_blueprint(staffs.bp)

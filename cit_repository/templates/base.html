@@ -82,8 +82,8 @@ The above copyright notice and this permission notice shall be included in all c
                   </li>
                   {% else %}
                   <li class="nav-item">
-                    <a href="{{ url_for('auth.login') }}" class="btn btn-rose btn-raised btn-round " data-toggle="dropdown">
-                      Staff Login
+                    <a href="{{ url_for('auth.login') }}" class="nav-link"">
+			<i class="material-icons">perm_identity</i> Staff Login
                     </a>
                   </li>
                   {% endif %}

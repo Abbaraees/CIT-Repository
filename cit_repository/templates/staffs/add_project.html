@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+   <div class="row">
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-pills-rose flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">dashboard</i>Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">book</i>All Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="javascript:;"><i class="material-icons">add</i>Add Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>Add User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Departments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>Add Departments</a>
+          </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <h3>Create new Project</h3>
+        <form method="post">
+          {{ form.csrf_token }}
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              {{ form.department.label }}
+              {{ form.department(class_="form-control") }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.year_of_submission.label }}
+              {{ form.year_of_submission(class_="form-control", id="yearOfSubmission") }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.project_number.label }}
+              {{ form.project_number(class_="form-control") }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              {{ form.student_name.label }}
+              {{ form.student_name(class_="form-control" )}}
+            </div>
+            <div class="form-group col-md-6">
+              {{ form.supervisor_name.label }}
+              {{ form.supervisor_name(class_="form-control" )}}
+            </div>
+          </div>
+          <div class="form-group">
+              {{ form.topic.label }}
+              {{ form.topic(class_="form-control" )}}
+          </div>
+          <div class="form-group">
+              {{ form.body.label }}
+              {{ form.body(class_="form-control", row="12" )}}
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              {{ form.methodology.label }}
+              {{ form.methodology(class_="form-control" )}}
+            </div>
+            <div class="form-group col-md-6">
+              {{ form.references.label }}
+              {{ form.references(class_="form-control" )}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Make Project Visible Online</label>
+            <div class="form-check form-check-radio form-check-inline">
+              {{ form.visible.label}}
+              {{ form.visible }}
+            </div>
+          </div>
+          <button type="submit" class="btn btn-rose">Create Project</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+

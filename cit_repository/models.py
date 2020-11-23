@@ -34,12 +34,7 @@ class Staff(db.Model):
     user_level = db.Column(db.Integer, nullable=False)
     visible = db.Column(db.Boolean, default=True)
     password_hash = db.Column(db.String(255), nullable=False)
-<<<<<<< HEAD
 
-=======
-    created_at = db.Column(db.DateTime, default=datetime.now())
-    updated_at = db.Column(db.DateTime)
->>>>>>> a04c1ee8d45bc4ecd98de943244c2773d61fd4bb
 
     def __repr__(self):
         return f"<Staff: '{self.username}'>"
@@ -64,9 +59,6 @@ class Department(db.Model):
     def __repr__(self):
         return f"<Department: '{self.name}'>"
 
-    def __repr__(self):
-        return f"<Department: '{self.name}'>"
-
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -85,17 +77,18 @@ class Project(db.Model):
     def __repr__(self):
         return f"<Project: '{self.topic}'>"
 
-    def __repr__(self):
-        return f"<Project: '{self.topic}'>"
-
 
 @command('init-db')
 @with_appcontext
 def init_db():
     db.create_all()
     admin = Admin(username='admin', email='admin@example.com')
+    cs = Department(name='Computer Studies')
+    mc = Department(name="Maths and Computer Science")
     admin.hash_password('adminpass')
     db.session.add(admin)
+    db.session.add(cs)
+    db.session.add(mc)
     db.session.commit()
 
     echo('Database is initialized')
