@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if g.user %}
+   <div class="row">
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-pills-rose flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">dashboard</i>Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="javascript:;"><i class="material-icons">book</i>All Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">add</i>Add Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>Add User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Departments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>Add Departments</a>
+          </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+{% else %}
+    <div class="col-md-12">
+{% endif %}
+      <div class="row">
+        <form class="col-md-12">
+          <h2 align="center">Filter available projects in repository</h2>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="departmentName">Department</label>
+              <select id="departmentName">
+                <option>All</option>
+                <option>Computer Studies</option>
+                <option>Maths and Computer Science</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="supervisorName">Supervisor Name</label>
+              <input type="text" class="form-control" id="supervisorName" placeholder="e.g Mukhtar Abubakar">
+            </div>
+            <div class="form-group col-md-4">
+              <button class="btn btn-rose"><i class="material-icons">search</i> Search</button>
+            </div>
+          </div>
+        </form>
+        <div class="col-md-12">
+          {% if staffs %}
+          <h3 align="center" style="margin-right: 30px">{{ n }} Staff(s) Found</h3>
+          {% else %}
+          <h3 align="center" style="margin-right: 30px">No Staff Found</h3>
+          {% endif %}
+        </div>
+      </div>
+      {% if stafs %}
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="nav flex-column">
+            {% for staff in staffs %}
+            <li class="nav-item">
+              <a href="{{ url_for('view_project', id=staff.id) }}" class="nav-link "><i class="material-icons">link</i>{{ staff.topic }} - <span style="color: gray;">{{ staff.department.name }}</span></a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}
+raees@167.172.169.50
