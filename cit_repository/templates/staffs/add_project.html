@@ -4,30 +4,28 @@
     <div class="col-md-3">
         <ul class="nav nav-pills nav-pills-rose flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="javascript:;"><i class="material-icons">dashboard</i>Dashboard</a>
+            <a class="nav-link active" href="{{ url_for('staffs.dashboard') }}"><i class="material-icons">dashboard</i>Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:;"><i class="material-icons">book</i>All Projects</a>
+            <a class="nav-link" href="{{ url_for('staffs.all_projects') }}"><i class="material-icons">book</i>All Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="javascript:;"><i class="material-icons">add</i>Add Project</a>
+            <a class="nav-link" href="{{ url_for('staffs.add_project') }}"><i class="material-icons">library_add</i>Add Project</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Users</a>
+            <a class="nav-link" href="{{ url_for('staffs.all_staffs') }}"><i class="material-icons">people</i>View Users</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>Add User</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Departments</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>Add Departments</a>
+            <a class="nav-link" href="{{ url_for('staffs.add_staff') }}"><i class="material-icons">person_add</i>Add User</a>
           </li>
         </ul>
     </div>
     <div class="col-md-9">
+        {% if action == 'update' %}
+        <h3>Update Project</h3>
+        {% else %}
         <h3>Create new Project</h3>
+        {% endif %}
         <form method="post">
           {{ form.csrf_token }}
           <div class="form-row">
@@ -37,39 +35,39 @@
             </div>
             <div class="form-group col-md-4">
               {{ form.year_of_submission.label }}
-              {{ form.year_of_submission(class_="form-control", id="yearOfSubmission") }}
+              {{ form.year_of_submission(class_="form-control", id="yearOfSubmission", value=form.year_of_submission.data or project.year_of_submission) }}
             </div>
             <div class="form-group col-md-4">
               {{ form.project_number.label }}
-              {{ form.project_number(class_="form-control") }}
+              {{ form.project_number(class_="form-control", value=form.project_number.data or project.project_number) }}
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               {{ form.student_name.label }}
-              {{ form.student_name(class_="form-control" )}}
+              {{ form.student_name(class_="form-control", value=form.student_name.data or project.student_name )}}
             </div>
             <div class="form-group col-md-6">
               {{ form.supervisor_name.label }}
-              {{ form.supervisor_name(class_="form-control" )}}
+              {{ form.supervisor_name(value=form.supervisor_name.data or project.supervisor_name, class_="form-control" )}}
             </div>
           </div>
           <div class="form-group">
               {{ form.topic.label }}
-              {{ form.topic(class_="form-control" )}}
+              {{ form.topic(class_="form-control", value=form.topic.data or project.topic )}}
           </div>
           <div class="form-group">
               {{ form.body.label }}
-              {{ form.body(class_="form-control", row="12" )}}
+              <textarea name="body" class="form-control">{{ form.body.data or project.body }}</textarea>
           </div>
           <div class="form-row">
             <div class="col-md-6">
               {{ form.methodology.label }}
-              {{ form.methodology(class_="form-control" )}}
+              {{ form.methodology(class_="form-control", value=form.methodology.data or project.methodology )}}
             </div>
             <div class="form-group col-md-6">
               {{ form.references.label }}
-              {{ form.references(class_="form-control" )}}
+              {{ form.references(class_="form-control", value=form.references.data or project.references)}}
             </div>
           </div>
           <div class="form-group">
@@ -79,7 +77,11 @@
               {{ form.visible }}
             </div>
           </div>
+          {% if action == 'update' %}
+          <button type="submit" class="btn btn-rose">Update Project</button>
+          {% else %}
           <button type="submit" class="btn btn-rose">Create Project</button>
+          {% endif %}
         </form>
     </div>
 </div>

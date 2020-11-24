@@ -54,7 +54,7 @@ def add_project():
                 student_name=student,
                 supervisor_name=supervisor,
                 references=references,
-                methodology=methodology,
+                methiodology=methodology,
                 project_number=project_number
             )
             db.session.add(project)
@@ -71,6 +71,45 @@ def add_project():
     form.department.choices = depts
 
     return render_template('staffs/add_project.html', form=form)
+
+
+@bp.route('project/update/<int:id>', methods=['POST', 'GET'])
+@login_required
+def update_project(id):
+    project = Project.query.filter_by(id=id).first_or_404()
+    form = ProjectRegisterForm()
+
+    if request.method == 'POST':
+        department = form.department.data
+        year = form.year_of_submission.data
+        topic = form.topic.data
+        student_name = form.student_name.data
+        supervisor_name = form.supervisor_name.data
+        body = request.form['body']
+        references = form.references.data
+        methodology = form.methodology.data
+        visible = form.visible.data
+
+        department = Department.query.filter_by(name=department).first()
+
+        project.department = department
+        project.year_of_submission = year
+        project.topic = topic
+        project.student_name = student_name
+        project.supervisor_name  = supervisor_name
+        project.body = body
+        project.references = references
+        project.methodology = methodology
+        project.visible = visible
+
+        db.session.add(project)
+        db.session.commit()
+        flash("Project updated successfully", "success")
+
+        return redirect(url_for('view_project', id=project.id))
+    depts = [(d.name, d.name) for d in Department.query.all()]
+    form.department.choices = depts
+    return render_template('staffs/add_project.html', project=project,  form=form, action='update')
 
 
 @bp.route('/all')
