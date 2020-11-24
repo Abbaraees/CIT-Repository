@@ -60,13 +60,13 @@
           {% endif %}
         </div>
       </div>
-      {% if stafs %}
+      {% if staffs %}
       <div class="row">
         <div class="col-md-12">
           <ul class="nav flex-column">
             {% for staff in staffs %}
             <li class="nav-item">
-              <a href="{{ url_for('view_project', id=staff.id) }}" class="nav-link "><i class="material-icons">link</i>{{ staff.topic }} - <span style="color: gray;">{{ staff.department.name }}</span></a>
+              <a href="{{ url_for('staffs.view_staff', id=staff.id) }}" class="nav-link "><i class="material-icons">link</i>{{ staff.fullname }} - <span style="color: gray;">{{ staff.department.name }}</span></a>
             </li>
             {% endfor %}
           </ul>

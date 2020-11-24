@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+   <div class="row">
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-pills-rose flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">dashboard</i>Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">book</i>All Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">add</i>Add Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="javascript:;"><i class="material-icons">perm_identity</i>Add User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Departments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>Add Departments</a>
+          </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <h3>Add new Staff</h3>
+        <form method="post">
+          {{ form.csrf_token }}
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="username">Username</label>
+            {{ form.username(class_="form-control")}}
+            </div>
+            <div class="form-group col-md-6">
+              <label for="fullName">Full Name</label>
+              {{ form.fullname(class_="form-control") }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="dept">Department</label>
+              {{ form.department(class_="form-control") }}
+            </div>
+            <div class="form-group col-md-6">
+              <label for="level">Level</label>
+              {{ form.user_level(class_="form-control")}}
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="level">Password</label>
+              {{ form.password(class_="form-control", type="password")}}
+            </div>
+          </div>
+          <button type="submit" class="btn btn-rose">Add Staff</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

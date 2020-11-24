@@ -21,3 +21,11 @@ class ProjectRegisterForm(FlaskForm):
     references = StringField('References')
     methodology = StringField('Methodology')
     visible = BooleanField('Make Project Visible Online ')
+
+
+class StaffRegisterForm(FlaskForm):
+    fullname = StringField('Full Name', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    password = StringField('Password', validators=[DataRequired()])
+    department = SelectField('Department', validators=[DataRequired()])
+    user_level = StringField('User Level')

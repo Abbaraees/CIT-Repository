@@ -43,6 +43,13 @@ def create_app(test_config=None):
         return render_template('staffs/project_list.html', projects=projects)
 
 
+    @app.route('/project/<int:id>')
+    def view_project(id):
+        project = Project.query.filter_by(id=id).first_or_404()
+
+        return render_template('staffs/view_project.html', project=project)
+
+
     init_app(app)
     app.register_blueprint(staffs.bp)
     app.register_blueprint(auth.bp)

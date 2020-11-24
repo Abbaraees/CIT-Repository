@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+   <div class="row">
+    <div class="col-md-3">
+        <ul class="nav nav-pills nav-pills-rose flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">dashboard</i>Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">book</i>All Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">add</i>Add Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="javascript:;"><i class="material-icons">perm_identity</i>Add User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>View Departments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:;"><i class="material-icons">perm_identity</i>Add Departments</a>
+          </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <h3>Staff Information</h3>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="username">Username</label>
+              <input type="text" class="form-control disabled" id="username" value="{{ staff.username }}" disabled="true">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="fullName">Full Name</label>
+              <input type="text" class="form-control disabled" id="fullName" value="{{ staff.fullname }}" disabled="true">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="dept">Department</label>
+              <input type="text" class="form-control disabled" value="{{ staff.department.name }}" disabled="">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="level">Level</label>
+              <input type="text" class="form-control disabled" id="level" value="{{ staff.user_level }}" disabled>
+            </div>
+          </div>
+          
+
+          <a href="#" class="btn btn-rose">Edit Staff Info</a>
+    </div>
+</div>
+{% endblock content %}
