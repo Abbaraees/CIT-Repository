@@ -12,17 +12,22 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('staffs.add_project') }}"><i class="material-icons">library_add</i>Add Project</a>
           </li>
+          {% if session.get('role') == 'admin' %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('staffs.all_staffs') }}"><i class="material-icons">people</i>View Users</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('staffs.add_staff') }}"><i class="material-icons">person_add</i>Add User</a>
           </li>
+          {% endif %}
         </ul>
-    </div>
+    </div>         
     <div class="col-md-9">
+      {% block main_content %}
         <h2>Hey {{ g.user.username }}, Welcome to CIT Repository Dashboard</h2>
         <h4>Perform all admin operation using the navigation on the left</h4>
+      {% endblock main_content %}
     </div>
   </div>
+  
 {% endblock content %}

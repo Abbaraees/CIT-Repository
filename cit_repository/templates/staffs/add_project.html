@@ -1,25 +1,5 @@
-{% extends 'base.html' %}
-{% block content %}
-   <div class="row">
-    <div class="col-md-3">
-        <ul class="nav nav-pills nav-pills-rose flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="{{ url_for('staffs.dashboard') }}"><i class="material-icons">dashboard</i>Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('staffs.all_projects') }}"><i class="material-icons">book</i>All Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('staffs.add_project') }}"><i class="material-icons">library_add</i>Add Project</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('staffs.all_staffs') }}"><i class="material-icons">people</i>View Users</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('staffs.add_staff') }}"><i class="material-icons">person_add</i>Add User</a>
-          </li>
-        </ul>
-    </div>
+{% extends 'staffs/dashboard.html' %}
+{% block main_content %}
     <div class="col-md-9">
         {% if action == 'update' %}
         <h3>Update Project</h3>
@@ -35,39 +15,39 @@
             </div>
             <div class="form-group col-md-4">
               {{ form.year_of_submission.label }}
-              {{ form.year_of_submission(class_="form-control", id="yearOfSubmission", value=form.year_of_submission.data or project.year_of_submission) }}
+              {{ form.year_of_submission(class_="form-control", id="yearOfSubmission", value=project.year_of_submission if project else form.year_of_submission.data) }}
             </div>
             <div class="form-group col-md-4">
               {{ form.project_number.label }}
-              {{ form.project_number(class_="form-control", value=form.project_number.data or project.project_number) }}
+              {{ form.project_number(class_="form-control", value=project.project_number if project else form.project_number.data) }}
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               {{ form.student_name.label }}
-              {{ form.student_name(class_="form-control", value=form.student_name.data or project.student_name )}}
+              {{ form.student_name(class_="form-control", value=project.student_name if project else form.student_name.data)}}
             </div>
             <div class="form-group col-md-6">
               {{ form.supervisor_name.label }}
-              {{ form.supervisor_name(value=form.supervisor_name.data or project.supervisor_name, class_="form-control" )}}
+              {{ form.supervisor_name(class_="form-control", value=project.supervisor_name if project else form.supervisor_name.data )}}
             </div>
           </div>
           <div class="form-group">
               {{ form.topic.label }}
-              {{ form.topic(class_="form-control", value=form.topic.data or project.topic )}}
+              {{ form.topic(class_="form-control", value=project.topic if project else form.topic.data)}}
           </div>
           <div class="form-group">
               {{ form.body.label }}
-              <textarea name="body" class="form-control">{{ form.body.data or project.body }}</textarea>
+              <textarea name="body" class="form-control">{{ project.body if project else form.body.data }}</textarea>
           </div>
           <div class="form-row">
             <div class="col-md-6">
               {{ form.methodology.label }}
-              {{ form.methodology(class_="form-control", value=form.methodology.data or project.methodology )}}
+              {{ form.methodology(class_="form-control", value=project.methodology if project else form.methodology.data)}}
             </div>
             <div class="form-group col-md-6">
               {{ form.references.label }}
-              {{ form.references(class_="form-control", value=form.references.data or project.references)}}
+              {{ form.references(class_="form-control", value=project.references if project else form.references.data )}}
             </div>
           </div>
           <div class="form-group">
@@ -84,6 +64,5 @@
           {% endif %}
         </form>
     </div>
-</div>
-{% endblock content %}
+{% endblock main_content %}
 

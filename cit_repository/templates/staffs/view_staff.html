@@ -44,7 +44,7 @@
           </div>
           
 
-          <a href="#" class="btn btn-rose">Edit Staff Info</a>
+          <a href="{{ url_for('staffs.update_staff', id=staff.id) }}" class="btn btn-rose">Edit Staff Info</a>
     </div>
 </div>
 {% endblock content %}

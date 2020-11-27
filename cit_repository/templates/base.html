@@ -82,15 +82,17 @@ The above copyright notice and this permission notice shall be included in all c
                   </li>
                   {% else %}
                   <li class="nav-item">
-                    <a href="{{ url_for('auth.login') }}" class="nav-link"">
+                    <a href="{{ url_for('auth.login') }}" class="nav-link">
 			<i class="material-icons">perm_identity</i> Staff Login
                     </a>
                   </li>
                   {% endif %}
                 </ul>
               </div><!-- /.navbar-collapse -->
+
             </div><!-- /.container-->
           </nav>
+  
   {% block content %}{% endblock content %}
   
   <!--   Core JS Files   -->

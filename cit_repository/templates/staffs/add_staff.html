@@ -27,31 +27,39 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="username">Username</label>
-            {{ form.username(class_="form-control")}}
+            {{ form.username(class_="form-control", value=staff.username if staff)}}
             </div>
             <div class="form-group col-md-6">
               <label for="fullName">Full Name</label>
-              {{ form.fullname(class_="form-control") }}
+              {{ form.fullname(class_="form-control", value=staff.fullname if staff) }}
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="dept">Department</label>
-              {{ form.department(class_="form-control") }}
+              {{ form.department(class_="form-control", value=staff.department.name if staff) }}
             </div>
             <div class="form-group col-md-6">
               <label for="level">Level</label>
-              {{ form.user_level(class_="form-control")}}
+              {{ form.user_level(class_="form-control", value=staff.user_level if staff)}}
             </div>
           </div>
           
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="level">Password</label>
-              {{ form.password(class_="form-control", type="password")}}
+              {% if action == 'update' %}
+                <input type="password" class="form-control" name="password">
+              {% else %}
+                  {{ form.password(class_="form-control", type="password")}}
+              {% endif %}
             </div>
           </div>
+          {% if action == 'update' %}
+          <button type="submit" class="btn btn-rose">Update Staff info</button>
+          {% else %}
           <button type="submit" class="btn btn-rose">Add Staff</button>
+          {% endif %}
         </form>
     </div>
 </div>

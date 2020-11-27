@@ -23,7 +23,7 @@ def login():
             print("Admin")
             user = Admin.query.filter_by(username=username).first()
             if user is None or not user.verify_password(password):
-                flash('Incorrect Username or Password')
+                flash('Incorrect Username or Password', 'danger')
             else:
                 session.clear()
                 session['role'] = 'admin'
@@ -34,7 +34,7 @@ def login():
             print("Staff")
             user = Staff.query.filter_by(username=username).first()
             if user is None or not user.verify_password(password):
-                flash('Incorrect Username or Password')
+                flash('Incorrect Username or Password', 'danger')
             else:
                 session.clear()
                 session['role'] = 'staff'
@@ -71,6 +71,7 @@ def login_required(func):
         return func(*args, **kwargs)
 
     return wrapped_func
+
 
 def admin_only(func):
     @functools.wraps(func)
