@@ -42,9 +42,18 @@
               <input type="text" class="form-control disabled" id="level" value="{{ staff.user_level }}" disabled>
             </div>
           </div>
-          
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <a href="{{ url_for('staffs.update_staff', id=staff.id) }}" class="btn btn-rose">Edit Staff Info</a>
+            </div>
+            <div class="form-group col-md-6">
+              <form action="{{ url_for('delete_staff) }}">
+                <button type="submit" class="btn btn-danger">Delete Staff</button>
+            </form>
+            </div>
+          </div>
 
-          <a href="{{ url_for('staffs.update_staff', id=staff.id) }}" class="btn btn-rose">Edit Staff Info</a>
+          
     </div>
 </div>
 {% endblock content %}

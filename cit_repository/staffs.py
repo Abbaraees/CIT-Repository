@@ -7,7 +7,7 @@ from .forms import ProjectRegisterForm, StaffRegisterForm
 from .models import Department, db, Project, Staff
 
 
-bp = Blueprint('staffs', __name__, url_prefix='/admin')
+bp = Blueprint('admin', __name__, url_prefix='/admin')
 
 
 @bp.route('/dashboard')
@@ -197,3 +197,14 @@ def update_staff(id):
 
     return render_template('staffs/add_staff.html',
         staff=staff, form=form, action='update')
+
+
+@bp.route('/staffs/delete/<int:id>', methods=['POST'])
+@admin_only
+def delete_staff(id):
+    staff = Staff.query.filter_by(id=id).first_or_404()
+
+    db.session.delete(staff)
+    db.session.commit()
+
+    redirect(url_for('all_staffs'))
