@@ -7,7 +7,7 @@ from .forms import ProjectRegisterForm, StaffRegisterForm
 from .models import Department, db, Project, Staff
 
 
-bp = Blueprint('admin', __name__, url_prefix='/admin')
+bp = Blueprint('staffs', __name__, url_prefix='/admin')
 
 
 @bp.route('/dashboard')
@@ -207,4 +207,4 @@ def delete_staff(id):
     db.session.delete(staff)
     db.session.commit()
 
-    redirect(url_for('all_staffs'))
+    redirect(url_for('staffs.all_staffs'))
