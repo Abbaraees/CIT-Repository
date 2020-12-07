@@ -15,39 +15,39 @@
             </div>
             <div class="form-group col-md-4">
               {{ form.year_of_submission.label }}
-              {{ form.year_of_submission(class_="form-control", id="yearOfSubmission", value=project.year_of_submission if project else form.year_of_submission.data) }}
+              {{ form.year_of_submission(class_="form-control", id="yearOfSubmission", value=project.year_of_submission if project else form.year_of_submission.data or "") }}
             </div>
             <div class="form-group col-md-4">
               {{ form.project_number.label }}
-              {{ form.project_number(class_="form-control", value=project.project_number if project else form.project_number.data) }}
+              {{ form.project_number(class_="form-control", value=project.project_number if project else form.project_number.data or "") }}
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               {{ form.student_name.label }}
-              {{ form.student_name(class_="form-control", value=project.student_name if project else form.student_name.data)}}
+              {{ form.student_name(class_="form-control", value=project.student_name if project else form.student_name.data or "")}}
             </div>
             <div class="form-group col-md-6">
               {{ form.supervisor_name.label }}
-              {{ form.supervisor_name(class_="form-control", value=project.supervisor_name if project else form.supervisor_name.data )}}
+              {{ form.supervisor_name(class_="form-control", value=project.supervisor_name if project else form.supervisor_name.data or "" )}}
             </div>
           </div>
           <div class="form-group">
               {{ form.topic.label }}
-              {{ form.topic(class_="form-control", value=project.topic if project else form.topic.data)}}
+              {{ form.topic(class_="form-control", value=project.topic if project else form.topic.data or "")}}
           </div>
           <div class="form-group">
               {{ form.body.label }}
-              <textarea name="body" class="form-control">{{ project.body if project else form.body.data }}</textarea>
+              <textarea name="body" class="form-control">{{ project.body if project else form.body.data or "" }}</textarea>
           </div>
           <div class="form-row">
             <div class="col-md-6">
               {{ form.methodology.label }}
-              {{ form.methodology(class_="form-control", value=project.methodology if project else form.methodology.data)}}
+              {{ form.methodology(class_="form-control", value=project.methodology if project else form.methodology.data or "")}}
             </div>
             <div class="form-group col-md-6">
               {{ form.references.label }}
-              {{ form.references(class_="form-control", value=project.references if project else form.references.data )}}
+              {{ form.references(class_="form-control", value=project.references if project else form.references.data  or "")}}
             </div>
           </div>
           <div class="form-group">

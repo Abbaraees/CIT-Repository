@@ -54,7 +54,7 @@ def add_project():
                 student_name=student,
                 supervisor_name=supervisor,
                 references=references,
-                methiodology=methodology,
+                methodology=methodology,
                 project_number=project_number
             )
             db.session.add(project)
@@ -65,7 +65,6 @@ def add_project():
 
         flash(error, "warning")
 
-    print("Invalid")
     depts = [(dept.name, dept.name) for dept in Department.query.all()]
 
     form.department.choices = depts
