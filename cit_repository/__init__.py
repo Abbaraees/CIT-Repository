@@ -10,9 +10,9 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
     app.config.from_mapping({
-        'SQLALCHEMY_DATABASE_URI': 'sqlite:///'+os.path.join(app.instance_path, 'data.sqlite'),
-        'SQLALCHEMY_TRACK_MODIFICATIONS': False,
-        'SECRET_KEY': 'dev'
+        'SQLALCHEMY_DATABASE_URI':  "mysql://sql12379697:cCSXiPWs4H@sql12.freemysqlhosting.net/sql12379697",
+        'SECRET_KEY': 'je9h3738hwie63plk-3-38hwltw',
+        'SQLALCHEMY_TRACK_MODIFICATIONS': False
     })
 
     if test_config:

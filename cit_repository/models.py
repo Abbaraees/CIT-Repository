@@ -5,6 +5,8 @@ from flask.cli import with_appcontext
 from flask_sqlalchemy import SQLAlchemy
 from passlib.apps import custom_app_context as pwd_context
 
+import pymysql
+pymysql.install_as_MySQLdb()
 
 db = SQLAlchemy()
 
@@ -13,7 +15,7 @@ class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50))
-    password_hash = db.Column(db.String(255), nullable=False)
+    password_hash = db.Column(db.String(512), nullable=False)
 
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)
@@ -33,7 +35,7 @@ class Staff(db.Model):
     department = db.relationship('Department', backref=db.backref('staffs', lazy=True)) 
     user_level = db.Column(db.Integer, nullable=False)
     visible = db.Column(db.Boolean, default=True)
-    password_hash = db.Column(db.String(255), nullable=False)
+    password_hash = db.Column(db.String(512), nullable=False)
 
 
     def __repr__(self):
@@ -69,9 +71,9 @@ class Project(db.Model):
     student_name = db.Column(db.String(100), nullable=False)
     supervisor_name = db.Column(db.String(100), nullable=False)
     topic = db.Column(db.String(255), nullable=False)
-    body = db.Column(db.String(255), nullable=False)
+    body = db.Column(db.String(767), nullable=False)
     methodology = db.Column(db.String(255))
-    references = db.Column(db.String)
+    references = db.Column(db.String(2555))
     visible = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
