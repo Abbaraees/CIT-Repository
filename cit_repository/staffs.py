@@ -207,4 +207,4 @@ def delete_staff(id):
     db.session.delete(staff)
     db.session.commit()
 
-    redirect(url_for('staffs.all_staffs'))
+    return redirect(url_for('staffs.all_staffs'))
