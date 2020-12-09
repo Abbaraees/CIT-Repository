@@ -112,6 +112,17 @@ def update_project(id):
     return render_template('staffs/add_project.html', project=project,  form=form, action='update')
 
 
+@bp.route('/projects/delete/<int:id>', methods=['POST'])
+@admin_only
+def delete_project(id):
+    project = Project.query.filter_by(id=id).first_or_404()
+
+    db.session.delete(project)
+    db.session.commit()
+
+    return redirect(url_for('staffs.all_projects'))
+
+
 @bp.route('/staffs')
 @admin_only
 def all_staffs():
