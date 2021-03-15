@@ -11,5 +11,6 @@ It includes the functionality to search for a project based on the year of submi
 * pip install -r requirements.txt
 * set FLASK_APP=cit_repository (windows)
 * export FLASK_APP=cit_repository (linux/mac-os)
+* flask init-db
 * flask run
 * goto http://127.0.0.1:5000 on your browser
